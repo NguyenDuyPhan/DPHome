@@ -1,0 +1,3 @@
+# Bỏ qua các file cơ sở dữ liệu .mdf và .ldf
+*.mdf
+*.ldf

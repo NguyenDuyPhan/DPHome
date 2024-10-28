@@ -1,0 +1,135 @@
+﻿@model IEnumerable<WebBanHang.Models.EF.Product>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<style>
+    .product-grid {
+        display: flex;
+        flex-wrap: wrap;
+    }
+
+    
+</style>
+
+<link rel="stylesheet" type="text/css" href="/Content/Asset/styles/categories_styles.css">
+<link rel="stylesheet" type="text/css" href="/Content/Asset/styles/categories_responsive.css">
+
+<div class="container product_section_container">
+    <div class="row">
+        <div class="col product_section clearfix">
+
+            <!-- Breadcrumbs -->
+
+            <div class="breadcrumbs d-flex flex-row align-items-center">
+                <ul>
+                    <li><a href="trang-chu">Home</a></li>
+                    <li class="active"><a href="san-pham"><i class="fa fa-angle-right" aria-hidden="true"></i>All</a></li>
+                </ul>
+            </div>
+
+            <!-- Sidebar -->
+
+            <div class="sidebar">
+                @Html.Action("MenuRight", "Menu")
+
+                <!-- Price Range Filtering -->
+                <div class="sidebar_section">
+                    <div class="sidebar_title">
+                        <h5>Tìm Theo Giá Sản Phẩm</h5>
+                    </div>
+                    <p>
+                        <label for="min_price">Từ: </label>
+                        <input type="number" id="min_price" name="min_price" placeholder="Min Price" style="width: 100%; padding: 5px;" />
+                    </p>
+                    <p>
+                        <label for="max_price">Đến: </label>
+                        <input type="number" id="max_price" name="max_price" placeholder="Max Price" style="width: 100%; padding: 5px;" />
+                    </p>
+                    <div class="filter_button">
+                        <button id="filter_btn" style="padding: 10px 20px;">Tìm Kiếm</button>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Main Content -->
+
+            <div class="main_content">
+
+                <!-- Products -->
+
+                <div class="products_iso">
+                    <div class="row">
+                        <div class="col">
+
+                            <!-- Product Sorting -->
+
+                            <div class="product_sorting_container product_sorting_container_top">
+                                <ul class="product_sorting">
+                                    <li>
+                                        <span class="type_sorting_text">Sắp Xếp</span>
+                                        <i class="fa fa-angle-down"></i>
+                                        <ul class="sorting_type">
+                                            <li class="type_sorting_btn" data-isotope-option="{ &quot;sortBy&quot;: &quot;original-order&quot; }"><span>Mặc Định</span></li>
+                                            <li class="type_sorting_btn" data-isotope-option="{ &quot;sortBy&quot;: &quot;price&quot; }"><span>Giá</span></li>
+                                            <li class="type_sorting_btn" data-isotope-option="{ &quot;sortBy&quot;: &quot;name&quot; }"><span>Tên Sản Phẩm</span></li>
+                                        </ul>
+                                    </li>
+                                    <li>
+                                        <span>Show</span>
+                                        <span class="num_sorting_text">6</span>
+                                        <i class="fa fa-angle-down"></i>
+                                        <ul class="sorting_num">
+                                            <li class="num_sorting_btn"><span>6</span></li>
+                                            <li class="num_sorting_btn"><span>12</span></li>
+                                            <li class="num_sorting_btn"><span>24</span></li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                               
+
+                            </div>
+
+                            <!-- Product Grid -->
+
+                            <div class="product-grid">
+                              @Html.Partial("_ProductList",Model)                                
+                            </div>  
+
+
+                                
+                            <!-- Product Sorting -->                       
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section scripts{
+
+    <script src="/Content/Asset/js/categories_custom.js"></script>
+    <script>
+    $(document).ready(function () {
+        $('#filter_btn').click(function () {
+            var minPrice = $('#min_price').val();
+            var maxPrice = $('#max_price').val();
+
+            $.ajax({
+                url: '@Url.Action("FilterByPrice", "Product")',
+                type: 'GET',
+                data: { minPrice: minPrice, maxPrice: maxPrice },
+                success: function (response) {
+                    $('.product-grid').html(response);
+                    // Hoặc, nếu không sử dụng Isotope, thêm mã CSS khởi tạo lại flexbox hoặc grid layout nếu cần
+                },
+                error: function () {
+                    alert('Error filtering products');
+                }
+            });
+        });
+    });
+    </script>
+}
