@@ -72,6 +72,7 @@
                         <th>Danh Mục</th>
                         <th>Số Lượng</th> 
                         <th>Giá</th> 
+                        <th>Cost</th> 
                         <th>Ngày Tạo</th>
                         <th>Home</th>
                         <th>Hot</th>
@@ -90,20 +91,31 @@
                             var strCheckHot = item.isHot ? "<i class='fa fa-check text-success'></i>" : "<i class='fas fa-times text-danger'></i>";
                     <tr id="trow_@item.Id">
                         <td>@i</td>
-                        <td><img src="@item.ProductImage.FirstOrDefault(x=>x.isDefault).Image" width="50" /></td>
+                        @*<td><img src="@item.ProductImage.FirstOrDefault(x=>x.isDefault).Image" width="50" /></td>*@
+                        <td>
+                            @if (item.ProductImage.FirstOrDefault(x => x.isDefault) != null)
+                            {
+                    <img src="@item.ProductImage.FirstOrDefault(x => x.isDefault).Image" width="50" /> }
+                                        else
+                                        {
+                    <span>Không có ảnh</span> <!-- Hoặc hiển thị hình ảnh mặc định nếu muốn -->}
+                        </td>
                         <td>@item.Title</td>
                         <td>@item.ProductCategory.Title</td>
                         <td>@item.Quantity</td>
                         <td>@item.Price</td>
+                        <td>@item.Cost</td>
                         <td>@item.CreatedDate.ToString("dd/MM/yyyy")</td>
                         <td class="text-center"><a class="btnHome" data-id="@item.Id" href="#">@Html.Raw(strCheckHome)</a></td>
                         <td class="text-center"><a class="btnHot" data-id="@item.Id" href="#">@Html.Raw(strCheckHot)</a></td>
 
                         <td class="text-center"><a class="btnActive" data-id="@item.Id" href="#">@Html.Raw(strCheck)</a></td>
                         <td>
-                            <a href="/admin/products/edit/@item.Id" class="btn btn-sm btn-primary">Sua</a>|
-                            <a href="#" data-id="@item.Id" class="btn btn-sm btn-danger btnDelete">Xoa</a>
+                            <a href="/admin/products/edit/@item.Id" class="btn btn-sm btn-primary">Sửa</a>|
+                            <a href="#" data-id="@item.Id" class="btn btn-sm btn-danger btnDelete">Xóa</a> |
+                            <a href="#" class="btn btn-sm btn-success btnNhapHang" data-id="@item.Id">Nhập</a>
                         </td>
+
                     </tr>
 
                             i++;
@@ -131,6 +143,29 @@
 
 </section>
 <!-- /.content -->
+
+<div class="modal fade" id="modalNhapHang" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <form id="formNhapHang">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Nhập thêm số lượng</h5>
+                    <button type="button" class="close" data-dismiss="modal"><span>&times;</span></button>
+                </div>
+                <div class="modal-body">
+                    <input type="hidden" id="productId" />
+                    <div class="form-group">
+                        <input type="number" id="quantity" class="form-control" placeholder="Nhập số lượng" min="1" required />
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-primary">Xác nhận</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Hủy</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
 
 @section scripts{
     <script>
@@ -208,6 +243,33 @@
                         }
                     }
                 });
+            });
+
+            $('body').on('click', '.btnNhapHang', function () {
+                var id = $(this).data('id');
+                $('#productId').val(id);
+                $('#quantity').val(1);
+                $('#modalNhapHang').modal('show');
+            });
+
+            // Khi submit form nhập hàng
+            $('#formNhapHang').submit(function (e) {
+                e.preventDefault();
+                var id = $('#productId').val();
+                var quantity = parseInt($('#quantity').val());
+
+                if (quantity > 0) {
+                    $.post('/admin/products/NhapHang', { id: id, quantity: quantity }, function (res) {
+                        if (res.success) {
+                            alert('Đã nhập hàng thành công!');
+                            location.reload();
+                        } else {
+                            alert('Lỗi khi nhập hàng!');
+                        }
+                    });
+                } else {
+                    alert('Vui lòng nhập số lượng hợp lệ.');
+                }
             });
         });
     </script>

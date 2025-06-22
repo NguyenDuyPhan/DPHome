@@ -1,0 +1,61 @@
+﻿@model WebBanHang.Models.EF.Order
+@{
+    Layout = null; // không dùng layout khi xuất PDF
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Phiếu Mua Hàng</title>
+    <style>
+        body {
+            font-family: Arial;
+            font-size: 14px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+        }
+
+        th, td {
+            border: 1px solid #000;
+            padding: 6px;
+            text-align: left;
+        }
+    </style>
+</head>
+<body>
+    <h2>PHIẾU MUA HÀNG</h2>
+    <p><strong>Mã đơn:</strong> @Model.Code</p>
+    <p><strong>Khách hàng:</strong> @Model.CustomerName</p>
+    <p><strong>SĐT:</strong> @Model.Phone</p>
+    <p><strong>Email:</strong> @Model.Email</p>
+    <p><strong>Địa chỉ:</strong> @Model.Address</p>
+    <p><strong>Ngày đặt:</strong> @Model.CreatedDate?.ToString("dd/MM/yyyy")</p>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Sản phẩm</th>
+                <th>Số lượng</th>
+                <th>Giá</th>
+                <th>Thành tiền</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.OrderDetails)
+            {
+                <tr>
+                    <td>@item.Product.Title</td>
+                    <td>@item.Quantity</td>
+                    <td>@item.Price.ToString("N0") VND</td>
+                    <td>@(item.Quantity * item.Price) VND</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    <p style="text-align: right; margin-top: 10px;"><strong>Tổng tiền:</strong> @Model.TotalAmount.ToString("N0") VND</p>
+</body>
+</html>

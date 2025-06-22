@@ -28,6 +28,7 @@ namespace WebBanHang.Models.EF
         public string Image { get; set; }
         [AllowHtml]
         public string Detail { get; set; }
+        public decimal Cost { get; set; }
         public decimal Price { get; set; }
         public decimal? PriceSale { get; set; }
         public int Quantity { get; set; }

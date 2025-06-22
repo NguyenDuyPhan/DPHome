@@ -21,9 +21,14 @@ namespace WebBanHang.Models.EF
         public string CustomerName { get; set; }
         public string Phone { get; set; }
         public string Address { get; set; }
+        public string Email { get; set; }
         public decimal TotalAmount { get; set; }
         public int Quantity { get; set; }
+        public int TypePayment { get; set; }
 
-        public ICollection<OrderDetail> OrderDetails { get; set; }
+        public string CustomerId { get; set; }
+        public int Status { get; set; }
+
+        public virtual ICollection<OrderDetail> OrderDetails { get; set; }
     }
 }

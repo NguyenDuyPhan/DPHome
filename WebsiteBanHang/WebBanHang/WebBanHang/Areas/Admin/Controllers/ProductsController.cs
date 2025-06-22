@@ -94,6 +94,7 @@ namespace WebBanHang.Areas.Admin.Controllers
 
             // Truyền danh sách hình ảnh của sản phẩm xuống View
             ViewBag.ProductImages = item.ProductImage.ToList();
+            
             return View(item);
         }
 
@@ -127,6 +128,15 @@ namespace WebBanHang.Areas.Admin.Controllers
                         };
                         _dbConnect.ProductImages.Add(productImage);
                     }
+
+                    if (!_dbConnect.ProductImages.Any(x => x.ProductId == model.Id && x.isDefault))
+                    {
+                        var firstImage = _dbConnect.ProductImages.FirstOrDefault(x => x.ProductId == model.Id); 
+                        if (firstImage != null)
+                        {
+                            firstImage.isDefault = true; // Đặt ảnh đầu tiên làm đại diện nếu không có ảnh nào được chọn
+                        }
+                    }
                 }
                 _dbConnect.Entry(model).Property(x => x.Title).IsModified = true;
                 _dbConnect.Entry(model).Property(x => x.Description).IsModified = true;
@@ -146,6 +156,8 @@ namespace WebBanHang.Areas.Admin.Controllers
                 _dbConnect.Entry(model).Property(x => x.Price).IsModified = true;
                 _dbConnect.Entry(model).Property(x => x.PriceSale).IsModified = true;
                 _dbConnect.Entry(model).Property(x => x.ProductCategoryId).IsModified = true;
+                _dbConnect.Entry(model).Property(x => x.Cost).IsModified = true;
+                _dbConnect.Entry(model).Property(x => x.Quantity).IsModified = true;
                 _dbConnect.SaveChanges();
                 return RedirectToAction("Index");
             }
@@ -203,6 +215,22 @@ namespace WebBanHang.Areas.Admin.Controllers
                 _dbConnect.Entry(item).Property(x => x.isHot).IsModified = true;
                 _dbConnect.SaveChanges();
                 return Json(new { success = true, Hot = item.isHot });
+            }
+            return Json(new { success = false });
+        }
+
+        [HttpPost]
+        public ActionResult NhapHang(int id, int quantity)
+        {
+            var product = _dbConnect.Products.Find(id);
+            if (product != null && quantity > 0)
+            {
+                product.Quantity += quantity;
+                product.ModifiedDate = DateTime.Now;
+                _dbConnect.Entry(product).Property(x => x.Quantity).IsModified = true;
+                _dbConnect.Entry(product).Property(x => x.ModifiedDate).IsModified = true;
+                _dbConnect.SaveChanges();
+                return Json(new { success = true });
             }
             return Json(new { success = false });
         }

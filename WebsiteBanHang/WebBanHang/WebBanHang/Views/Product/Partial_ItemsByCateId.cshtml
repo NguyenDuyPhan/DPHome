@@ -17,7 +17,7 @@
                 </div>
                 <div class="favorite favorite_left"></div>
                 <div class="product_info">
-                    <h6 class="product_name"><a href="@item.Alias">@item.Title</a></h6>
+                    <h6 class="product_name"><a href="@Url.Action("Detail", "Product", new { id = item.Id })">@item.Title</a></h6>
                     @if (item.PriceSale != null)
                     {
                         <div class="product_price">@item.PriceSale<span>@item.Price</span></div>

@@ -1,0 +1,28 @@
+﻿@model IEnumerable<WebBanHang.Models.EF.OrderDetail>
+    @if(Model!=null && Model.Any()) {
+        int i = 1;
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>#</th>
+            <th>Tên Sản Phẩm</th>
+            <th>Giá</th>
+            <th>Số Lượng</th>
+            <th>Thành Tiền</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+        <tr>
+            <td>@i</td>
+            <td>@item.Product.Title</td>
+            <td>@String.Format("{0:0,0 VND}", item.Price)</td>
+            <td>@item.Quantity</td>            
+            <td>@String.Format("{0:0,0 VND}", item.Price * item.Quantity)</td>
+        </tr>
+            i++;
+        }
+    </tbody>
+</table>
+}

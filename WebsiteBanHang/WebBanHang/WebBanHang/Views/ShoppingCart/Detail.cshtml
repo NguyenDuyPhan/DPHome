@@ -1,0 +1,39 @@
+﻿
+
+
+@model List<WebBanHang.Models.EF.OrderDetail>
+@{
+    var order = ViewBag.Order as WebBanHang.Models.EF.Order;
+}
+<link href="~/Content/Asset/styles/main_styles.css" rel="stylesheet" />
+<style>
+    .news_section_container {
+        margin-top: 180px;
+    }
+ </style>
+<div class="container news_section_container">
+    <h2>Chi tiết đơn hàng: @order.Code</h2>
+    <p>Ngày đặt: @order.CreatedDate</p>
+
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>Tên sản phẩm</th>
+                <th>Giá</th>
+                <th>Số lượng</th>
+                <th>Thành tiền</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.Product.Title</td>
+                    <td>@item.Price.ToString("N0")</td>
+                    <td>@item.Quantity</td>
+                    <td>@(item.Price * item.Quantity)</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

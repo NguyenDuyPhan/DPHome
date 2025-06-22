@@ -63,8 +63,8 @@
                     <p>@Model.Description</p>
                 </div>
                 @*<div class="free_delivery d-flex flex-row align-items-center justify-content-center">
-                    <span class="ti-truck"></span><span>free delivery</span>
-                </div>*@
+            <span class="ti-truck"></span><span>free delivery</span>
+        </div>*@
                 @if (Model.PriceSale != null)
                 {
                     <div class="original_price">@Model.Price</div>
@@ -77,6 +77,10 @@
 
                 }
 
+                <div class="product_details_title">
+                    <p>Kho:@Model.Quantity</p>
+                </div>
+
                 <ul class="star_rating">
                     <li><i class="fa fa-star" aria-hidden="true"></i></li>
                     <li><i class="fa fa-star" aria-hidden="true"></i></li>
@@ -84,16 +88,9 @@
                     <li><i class="fa fa-star" aria-hidden="true"></i></li>
                     <li><i class="fa fa-star-o" aria-hidden="true"></i></li>
                 </ul>
-                <div class="product_color">
-                    <span>Select Color:</span>
-                    <ul>
-                        <li style="background: #e54e5d"></li>
-                        <li style="background: #252525"></li>
-                        <li style="background: #60b3f3"></li>
-                    </ul>
-                </div>
+
                 <div class="quantity d-flex flex-column flex-sm-row align-items-sm-center">
-                    <span>Quantity:</span>
+                    <span style="width:100px">Số Lượng:</span>
                     <div class="quantity_selector">
                         <span class="minus"><i class="fa fa-minus" aria-hidden="true"></i></span>
                         <span id="quantity_value">1</span>
@@ -102,6 +99,7 @@
                     <div class="red_button add_to_cart_button"><a href="#" class="btnAddToCart" data-id="@Model.Id">Thêm Vào Giỏ Hàng</a></div>
                     <div class="product_favorite d-flex flex-column align-items-center justify-content-center"></div>
                 </div>
+
             </div>
         </div>
     </div>

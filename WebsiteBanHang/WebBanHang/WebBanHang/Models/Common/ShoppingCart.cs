@@ -18,7 +18,7 @@ namespace WebBanHang.Models.Common
             if(checkExits!=null)
                 {
                 checkExits.Quantity += Quantity;
-                checkExits.TotalPrice += checkExits.Price * checkExits.Quantity;
+                checkExits.TotalPrice = checkExits.Price * checkExits.Quantity;
             }
             else
             {
@@ -41,7 +41,7 @@ namespace WebBanHang.Models.Common
             if (checkExits != null)
             {
                 checkExits.Quantity = quantity;
-                checkExits.TotalPrice += checkExits.Price * checkExits.Quantity;
+                checkExits.TotalPrice = checkExits.Price * checkExits.Quantity;
             }
         }
 

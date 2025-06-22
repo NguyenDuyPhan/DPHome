@@ -1,0 +1,22 @@
+﻿@model IEnumerable<WebBanHang.Models.Common.ShoppingCartItem>
+
+@if (Model != null && Model.Any())
+{
+    <h3>Giỏ Hàng</h3>
+    var tongtien = decimal.Zero;
+<table class="table">
+    @foreach (var item in Model)
+    {
+        tongtien += item.TotalPrice;
+        <tr>
+            <td>@item.ProductName</td>
+            <td>@item.Price</td>
+        </tr>
+
+    }
+    <tr>
+        <td>Tổng Tiền</td>
+        <td>@tongtien</td>
+    </tr>   
+</table>
+}

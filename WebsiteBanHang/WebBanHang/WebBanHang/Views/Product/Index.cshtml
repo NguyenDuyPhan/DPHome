@@ -123,7 +123,6 @@
                 data: { minPrice: minPrice, maxPrice: maxPrice },
                 success: function (response) {
                     $('.product-grid').html(response);
-                    // Hoặc, nếu không sử dụng Isotope, thêm mã CSS khởi tạo lại flexbox hoặc grid layout nếu cần
                 },
                 error: function () {
                     alert('Error filtering products');

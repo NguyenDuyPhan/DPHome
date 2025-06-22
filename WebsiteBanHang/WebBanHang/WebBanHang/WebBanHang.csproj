@@ -56,6 +56,9 @@
     <Reference Include="PagedList.Mvc, Version=4.5.0.0, Culture=neutral, PublicKeyToken=abbb863e9397c5e1, processorArchitecture=MSIL">
       <HintPath>..\packages\PagedList.Mvc.4.5.0.0\lib\net40\PagedList.Mvc.dll</HintPath>
     </Reference>
+    <Reference Include="Rotativa, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Rotativa.1.7.3\lib\net461\Rotativa.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
@@ -178,19 +181,26 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
+    <Compile Include="Areas\Admin\Controllers\AccountController.cs" />
     <Compile Include="Areas\Admin\Controllers\CategoryController.cs" />
     <Compile Include="Areas\Admin\Controllers\HomeController.cs" />
     <Compile Include="Areas\Admin\Controllers\NewsController.cs" />
+    <Compile Include="Areas\Admin\Controllers\OrderController.cs" />
     <Compile Include="Areas\Admin\Controllers\PostController.cs" />
     <Compile Include="Areas\Admin\Controllers\ProductCategoryController.cs" />
     <Compile Include="Areas\Admin\Controllers\ProductImageController.cs" />
     <Compile Include="Areas\Admin\Controllers\ProductsController.cs" />
     <Compile Include="Areas\Admin\Controllers\returrn.cs" />
+    <Compile Include="Areas\Admin\Controllers\RoleController.cs" />
+    <Compile Include="Areas\Admin\Controllers\StatisticalController.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\ContactController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\MenuController.cs" />
+    <Compile Include="Controllers\NewsController.cs" />
     <Compile Include="Controllers\ProductController.cs" />
+    <Compile Include="Controllers\ShoppingCartController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -230,11 +240,45 @@
     <Compile Include="Migrations\202410231009178_Update12062.Designer.cs">
       <DependentUpon>202410231009178_Update12062.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202411061231523_UpdatePayment.cs" />
+    <Compile Include="Migrations\202411061231523_UpdatePayment.Designer.cs">
+      <DependentUpon>202411061231523_UpdatePayment.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202411070202221_addEmail.cs" />
+    <Compile Include="Migrations\202411070202221_addEmail.Designer.cs">
+      <DependentUpon>202411070202221_addEmail.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202506110553101_AddFrKey.cs" />
+    <Compile Include="Migrations\202506110553101_AddFrKey.Designer.cs">
+      <DependentUpon>202506110553101_AddFrKey.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202506110557203_AddUserIdToOrder.cs" />
+    <Compile Include="Migrations\202506110557203_AddUserIdToOrder.Designer.cs">
+      <DependentUpon>202506110557203_AddUserIdToOrder.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202506110731435_UpdateSchema.cs" />
+    <Compile Include="Migrations\202506110731435_UpdateSchema.Designer.cs">
+      <DependentUpon>202506110731435_UpdateSchema.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202506120837364_addcost.cs" />
+    <Compile Include="Migrations\202506120837364_addcost.Designer.cs">
+      <DependentUpon>202506120837364_addcost.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202506190913475_addstatus.cs" />
+    <Compile Include="Migrations\202506190913475_addstatus.Designer.cs">
+      <DependentUpon>202506190913475_addstatus.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202506201454321_add-customerid.cs" />
+    <Compile Include="Migrations\202506201454321_add-customerid.Designer.cs">
+      <DependentUpon>202506201454321_add-customerid.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\CommonAbstract.cs" />
+    <Compile Include="Models\Common\Commom.cs" />
     <Compile Include="Models\Common\Filter.cs" />
     <Compile Include="Models\Common\ShoppingCart.cs" />
+    <Compile Include="Models\CustomerViewModel.cs" />
     <Compile Include="Models\EF\Adv.cs" />
     <Compile Include="Models\EF\Category.cs" />
     <Compile Include="Models\EF\Contact.cs" />
@@ -249,10 +293,66 @@
     <Compile Include="Models\EF\SystemSetting.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\OrderViewModel.cs" />
+    <Compile Include="Models\Payment\VnPayLibrary.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\Asset\dist\css\adminlte.css" />
+    <Content Include="Content\Asset\dist\css\adminlte.min.css" />
+    <Content Include="Content\Asset\dist\css\alt\adminlte.components.css" />
+    <Content Include="Content\Asset\dist\css\alt\adminlte.components.min.css" />
+    <Content Include="Content\Asset\dist\css\alt\adminlte.core.css" />
+    <Content Include="Content\Asset\dist\css\alt\adminlte.core.min.css" />
+    <Content Include="Content\Asset\dist\css\alt\adminlte.extra-components.css" />
+    <Content Include="Content\Asset\dist\css\alt\adminlte.extra-components.min.css" />
+    <Content Include="Content\Asset\dist\css\alt\adminlte.light.css" />
+    <Content Include="Content\Asset\dist\css\alt\adminlte.light.min.css" />
+    <Content Include="Content\Asset\dist\css\alt\adminlte.pages.css" />
+    <Content Include="Content\Asset\dist\css\alt\adminlte.pages.min.css" />
+    <Content Include="Content\Asset\dist\css\alt\adminlte.plugins.css" />
+    <Content Include="Content\Asset\dist\css\alt\adminlte.plugins.min.css" />
+    <Content Include="Content\Asset\dist\img\AdminLTELogo.png" />
+    <Content Include="Content\Asset\dist\img\avatar.png" />
+    <Content Include="Content\Asset\dist\img\avatar2.png" />
+    <Content Include="Content\Asset\dist\img\avatar3.png" />
+    <Content Include="Content\Asset\dist\img\avatar4.png" />
+    <Content Include="Content\Asset\dist\img\avatar5.png" />
+    <Content Include="Content\Asset\dist\img\boxed-bg.jpg" />
+    <Content Include="Content\Asset\dist\img\boxed-bg.png" />
+    <Content Include="Content\Asset\dist\img\credit\american-express.png" />
+    <Content Include="Content\Asset\dist\img\credit\cirrus.png" />
+    <Content Include="Content\Asset\dist\img\credit\mastercard.png" />
+    <Content Include="Content\Asset\dist\img\credit\paypal.png" />
+    <Content Include="Content\Asset\dist\img\credit\paypal2.png" />
+    <Content Include="Content\Asset\dist\img\credit\visa.png" />
+    <Content Include="Content\Asset\dist\img\default-150x150.png" />
+    <Content Include="Content\Asset\dist\img\icons.png" />
+    <Content Include="Content\Asset\dist\img\photo1.png" />
+    <Content Include="Content\Asset\dist\img\photo2.png" />
+    <Content Include="Content\Asset\dist\img\photo3.jpg" />
+    <Content Include="Content\Asset\dist\img\photo4.jpg" />
+    <Content Include="Content\Asset\dist\img\prod-1.jpg" />
+    <Content Include="Content\Asset\dist\img\prod-2.jpg" />
+    <Content Include="Content\Asset\dist\img\prod-3.jpg" />
+    <Content Include="Content\Asset\dist\img\prod-4.jpg" />
+    <Content Include="Content\Asset\dist\img\prod-5.jpg" />
+    <Content Include="Content\Asset\dist\img\user1-128x128.jpg" />
+    <Content Include="Content\Asset\dist\img\user2-160x160.jpg" />
+    <Content Include="Content\Asset\dist\img\user3-128x128.jpg" />
+    <Content Include="Content\Asset\dist\img\user4-128x128.jpg" />
+    <Content Include="Content\Asset\dist\img\user5-128x128.jpg" />
+    <Content Include="Content\Asset\dist\img\user6-128x128.jpg" />
+    <Content Include="Content\Asset\dist\img\user7-128x128.jpg" />
+    <Content Include="Content\Asset\dist\img\user8-128x128.jpg" />
+    <Content Include="Content\Asset\dist\js\adminlte.js" />
+    <Content Include="Content\Asset\dist\js\adminlte.min.js" />
+    <Content Include="Content\Asset\dist\js\demo.js" />
+    <Content Include="Content\Asset\dist\js\pages\dashboard.js" />
+    <Content Include="Content\Asset\dist\js\pages\dashboard2.js" />
+    <Content Include="Content\Asset\dist\js\pages\dashboard3.js" />
+    <Content Include="Content\Asset\images\Banan.jpg" />
     <Content Include="Content\Asset\images\banner_1.jpg" />
     <Content Include="Content\Asset\images\banner_2.jpg" />
     <Content Include="Content\Asset\images\banner_3.jpg" />
@@ -283,6 +383,8 @@
     <Content Include="Content\Asset\images\single_3.jpg" />
     <Content Include="Content\Asset\images\single_3_thumb.jpg" />
     <Content Include="Content\Asset\images\slider_1.jpg" />
+    <Content Include="Content\Asset\images\Sofa.jpg" />
+    <Content Include="Content\Asset\images\TuGiay.jpg" />
     <Content Include="Content\Asset\js\categories_custom.js" />
     <Content Include="Content\Asset\js\contact_custom.js" />
     <Content Include="Content\Asset\js\custom.js" />
@@ -296,6 +398,146 @@
     <Content Include="Content\Asset\plugins\Isotope\isotope.pkgd.min.js" />
     <Content Include="Content\Asset\plugins\jquery-ui-1.12.1.custom\jquery-ui.css" />
     <Content Include="Content\Asset\plugins\jquery-ui-1.12.1.custom\jquery-ui.js" />
+    <Content Include="Content\Asset\plugins\moment\locales.js" />
+    <Content Include="Content\Asset\plugins\moment\locales.min.js" />
+    <Content Include="Content\Asset\plugins\moment\locale\af.js" />
+    <Content Include="Content\Asset\plugins\moment\locale\ar-dz.js" />
+    <Content Include="Content\Asset\plugins\moment\locale\ar-kw.js" />
+    <Content Include="Content\Asset\plugins\moment\locale\ar-ly.js" />
+    <Content Include="Content\Asset\plugins\moment\locale\ar-ma.js" />
+    <Content Include="Content\Asset\plugins\moment\locale\ar-sa.js" />
+    <Content Include="Content\Asset\plugins\moment\locale\ar-tn.js" />
+    <Content Include="Content\Asset\plugins\moment\locale\ar.js" />
+    <Content Include="Content\Asset\plugins\moment\locale\az.js" />
+    <Content Include="Content\Asset\plugins\moment\locale\be.js" />
+    <Content Include="Content\Asset\plugins\moment\locale\bg.js" />
+    <Content Include="Content\Asset\plugins\moment\locale\bm.js" />
+    <Content Include="Content\Asset\plugins\moment\locale\bn-bd.js" />
+    <Content Include="Content\Asset\plugins\moment\locale\bn.js" />
+    <Content Include="Content\Asset\plugins\moment\locale\bo.js" />
+    <Content Include="Content\Asset\plugins\moment\locale\br.js" />
+    <Content Include="Content\Asset\plugins\moment\locale\bs.js" />
+    <Content Include="Content\Asset\plugins\moment\locale\ca.js" />
+    <Content Include="Content\Asset\plugins\moment\locale\cs.js" />
+    <Content Include="Content\Asset\plugins\moment\locale\cv.js" />
+    <Content Include="Content\Asset\plugins\moment\locale\cy.js" />
+    <Content Include="Content\Asset\plugins\moment\locale\da.js" />
+    <Content Include="Content\Asset\plugins\moment\locale\de-at.js" />
+    <Content Include="Content\Asset\plugins\moment\locale\de-ch.js" />
+    <Content Include="Content\Asset\plugins\moment\locale\de.js" />
+    <Content Include="Content\Asset\plugins\moment\locale\dv.js" />
+    <Content Include="Content\Asset\plugins\moment\locale\el.js" />
+    <Content Include="Content\Asset\plugins\moment\locale\en-au.js" />
+    <Content Include="Content\Asset\plugins\moment\locale\en-ca.js" />
+    <Content Include="Content\Asset\plugins\moment\locale\en-gb.js" />
+    <Content Include="Content\Asset\plugins\moment\locale\en-ie.js" />
+    <Content Include="Content\Asset\plugins\moment\locale\en-il.js" />
+    <Content Include="Content\Asset\plugins\moment\locale\en-in.js" />
+    <Content Include="Content\Asset\plugins\moment\locale\en-nz.js" />
+    <Content Include="Content\Asset\plugins\moment\locale\en-SG.js" />
+    <Content Include="Content\Asset\plugins\moment\locale\eo.js" />
+    <Content Include="Content\Asset\plugins\moment\locale\es-do.js" />
+    <Content Include="Content\Asset\plugins\moment\locale\es-mx.js" />
+    <Content Include="Content\Asset\plugins\moment\locale\es-us.js" />
+    <Content Include="Content\Asset\plugins\moment\locale\es.js" />
+    <Content Include="Content\Asset\plugins\moment\locale\et.js" />
+    <Content Include="Content\Asset\plugins\moment\locale\eu.js" />
+    <Content Include="Content\Asset\plugins\moment\locale\fa.js" />
+    <Content Include="Content\Asset\plugins\moment\locale\fi.js" />
+    <Content Include="Content\Asset\plugins\moment\locale\fil.js" />
+    <Content Include="Content\Asset\plugins\moment\locale\fo.js" />
+    <Content Include="Content\Asset\plugins\moment\locale\fr-ca.js" />
+    <Content Include="Content\Asset\plugins\moment\locale\fr-ch.js" />
+    <Content Include="Content\Asset\plugins\moment\locale\fr.js" />
+    <Content Include="Content\Asset\plugins\moment\locale\fy.js" />
+    <Content Include="Content\Asset\plugins\moment\locale\ga.js" />
+    <Content Include="Content\Asset\plugins\moment\locale\gd.js" />
+    <Content Include="Content\Asset\plugins\moment\locale\gl.js" />
+    <Content Include="Content\Asset\plugins\moment\locale\gom-deva.js" />
+    <Content Include="Content\Asset\plugins\moment\locale\gom-latn.js" />
+    <Content Include="Content\Asset\plugins\moment\locale\gu.js" />
+    <Content Include="Content\Asset\plugins\moment\locale\he.js" />
+    <Content Include="Content\Asset\plugins\moment\locale\hi.js" />
+    <Content Include="Content\Asset\plugins\moment\locale\hr.js" />
+    <Content Include="Content\Asset\plugins\moment\locale\hu.js" />
+    <Content Include="Content\Asset\plugins\moment\locale\hy-am.js" />
+    <Content Include="Content\Asset\plugins\moment\locale\id.js" />
+    <Content Include="Content\Asset\plugins\moment\locale\is.js" />
+    <Content Include="Content\Asset\plugins\moment\locale\it-ch.js" />
+    <Content Include="Content\Asset\plugins\moment\locale\it.js" />
+    <Content Include="Content\Asset\plugins\moment\locale\ja.js" />
+    <Content Include="Content\Asset\plugins\moment\locale\jv.js" />
+    <Content Include="Content\Asset\plugins\moment\locale\ka.js" />
+    <Content Include="Content\Asset\plugins\moment\locale\kk.js" />
+    <Content Include="Content\Asset\plugins\moment\locale\km.js" />
+    <Content Include="Content\Asset\plugins\moment\locale\kn.js" />
+    <Content Include="Content\Asset\plugins\moment\locale\ko.js" />
+    <Content Include="Content\Asset\plugins\moment\locale\ku.js" />
+    <Content Include="Content\Asset\plugins\moment\locale\ky.js" />
+    <Content Include="Content\Asset\plugins\moment\locale\lb.js" />
+    <Content Include="Content\Asset\plugins\moment\locale\lo.js" />
+    <Content Include="Content\Asset\plugins\moment\locale\lt.js" />
+    <Content Include="Content\Asset\plugins\moment\locale\lv.js" />
+    <Content Include="Content\Asset\plugins\moment\locale\me.js" />
+    <Content Include="Content\Asset\plugins\moment\locale\mi.js" />
+    <Content Include="Content\Asset\plugins\moment\locale\mk.js" />
+    <Content Include="Content\Asset\plugins\moment\locale\ml.js" />
+    <Content Include="Content\Asset\plugins\moment\locale\mn.js" />
+    <Content Include="Content\Asset\plugins\moment\locale\mr.js" />
+    <Content Include="Content\Asset\plugins\moment\locale\ms-my.js" />
+    <Content Include="Content\Asset\plugins\moment\locale\ms.js" />
+    <Content Include="Content\Asset\plugins\moment\locale\mt.js" />
+    <Content Include="Content\Asset\plugins\moment\locale\my.js" />
+    <Content Include="Content\Asset\plugins\moment\locale\nb.js" />
+    <Content Include="Content\Asset\plugins\moment\locale\ne.js" />
+    <Content Include="Content\Asset\plugins\moment\locale\nl-be.js" />
+    <Content Include="Content\Asset\plugins\moment\locale\nl.js" />
+    <Content Include="Content\Asset\plugins\moment\locale\nn.js" />
+    <Content Include="Content\Asset\plugins\moment\locale\oc-lnc.js" />
+    <Content Include="Content\Asset\plugins\moment\locale\pa-in.js" />
+    <Content Include="Content\Asset\plugins\moment\locale\pl.js" />
+    <Content Include="Content\Asset\plugins\moment\locale\pt-br.js" />
+    <Content Include="Content\Asset\plugins\moment\locale\pt.js" />
+    <Content Include="Content\Asset\plugins\moment\locale\ro.js" />
+    <Content Include="Content\Asset\plugins\moment\locale\ru.js" />
+    <Content Include="Content\Asset\plugins\moment\locale\sd.js" />
+    <Content Include="Content\Asset\plugins\moment\locale\se.js" />
+    <Content Include="Content\Asset\plugins\moment\locale\si.js" />
+    <Content Include="Content\Asset\plugins\moment\locale\sk.js" />
+    <Content Include="Content\Asset\plugins\moment\locale\sl.js" />
+    <Content Include="Content\Asset\plugins\moment\locale\sq.js" />
+    <Content Include="Content\Asset\plugins\moment\locale\sr-cyrl.js" />
+    <Content Include="Content\Asset\plugins\moment\locale\sr.js" />
+    <Content Include="Content\Asset\plugins\moment\locale\ss.js" />
+    <Content Include="Content\Asset\plugins\moment\locale\sv.js" />
+    <Content Include="Content\Asset\plugins\moment\locale\sw.js" />
+    <Content Include="Content\Asset\plugins\moment\locale\ta.js" />
+    <Content Include="Content\Asset\plugins\moment\locale\te.js" />
+    <Content Include="Content\Asset\plugins\moment\locale\tet.js" />
+    <Content Include="Content\Asset\plugins\moment\locale\tg.js" />
+    <Content Include="Content\Asset\plugins\moment\locale\th.js" />
+    <Content Include="Content\Asset\plugins\moment\locale\tk.js" />
+    <Content Include="Content\Asset\plugins\moment\locale\tl-ph.js" />
+    <Content Include="Content\Asset\plugins\moment\locale\tlh.js" />
+    <Content Include="Content\Asset\plugins\moment\locale\tr.js" />
+    <Content Include="Content\Asset\plugins\moment\locale\tzl.js" />
+    <Content Include="Content\Asset\plugins\moment\locale\tzm-latn.js" />
+    <Content Include="Content\Asset\plugins\moment\locale\tzm.js" />
+    <Content Include="Content\Asset\plugins\moment\locale\ug-cn.js" />
+    <Content Include="Content\Asset\plugins\moment\locale\uk.js" />
+    <Content Include="Content\Asset\plugins\moment\locale\ur.js" />
+    <Content Include="Content\Asset\plugins\moment\locale\uz-latn.js" />
+    <Content Include="Content\Asset\plugins\moment\locale\uz.js" />
+    <Content Include="Content\Asset\plugins\moment\locale\vi.js" />
+    <Content Include="Content\Asset\plugins\moment\locale\x-pseudo.js" />
+    <Content Include="Content\Asset\plugins\moment\locale\yo.js" />
+    <Content Include="Content\Asset\plugins\moment\locale\zh-cn.js" />
+    <Content Include="Content\Asset\plugins\moment\locale\zh-hk.js" />
+    <Content Include="Content\Asset\plugins\moment\locale\zh-mo.js" />
+    <Content Include="Content\Asset\plugins\moment\locale\zh-tw.js" />
+    <Content Include="Content\Asset\plugins\moment\moment-with-locales.js" />
+    <Content Include="Content\Asset\plugins\moment\moment-with-locales.min.js" />
+    <Content Include="Content\Asset\plugins\moment\moment.min.js" />
     <Content Include="Content\Asset\plugins\OwlCarousel2-2.2.1\ajax-loader.gif" />
     <Content Include="Content\Asset\plugins\OwlCarousel2-2.2.1\animate.css" />
     <Content Include="Content\Asset\plugins\OwlCarousel2-2.2.1\owl.carousel.css" />
@@ -3106,10 +3348,16 @@
     <Content Include="Content\Client\plugins\uplot\uPlot.iife.min.js" />
     <Content Include="Content\Client\plugins\uplot\uPlot.min.css" />
     <Content Include="Content\PagedList.css" />
+    <Content Include="Content\template\send1.html" />
+    <Content Include="Content\template\send2.html" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Rotativa\help-wkhtmltoimage.txt" />
+    <Content Include="Rotativa\help-wkhtmltopdf.txt" />
+    <Content Include="Rotativa\wkhtmltoimage.exe" />
+    <Content Include="Rotativa\wkhtmltopdf.exe" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Areas\Admin\Views\web.config" />
@@ -3257,12 +3505,46 @@
     <Content Include="Content\Asset\plugins\themify-icons\fonts\themify.eot" />
     <Content Include="Content\Asset\plugins\themify-icons\fonts\themify.ttf" />
     <Content Include="Content\Asset\plugins\themify-icons\fonts\themify.woff" />
+    <Content Include="Areas\Admin\Views\Order\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Order\View.cshtml" />
+    <Content Include="Areas\Admin\Views\Order\Partial_SanPham.cshtml" />
+    <Content Include="Areas\Admin\Views\Role\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Role\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\Role\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\Account\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Account\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\Shared\_LayoutLogin.cshtml" />
+    <Content Include="Content\Asset\dist\css\adminlte.css.map" />
+    <Content Include="Content\Asset\dist\css\adminlte.min.css.map" />
+    <Content Include="Content\Asset\dist\css\alt\adminlte.components.css.map" />
+    <Content Include="Content\Asset\dist\css\alt\adminlte.components.min.css.map" />
+    <Content Include="Content\Asset\dist\css\alt\adminlte.core.css.map" />
+    <Content Include="Content\Asset\dist\css\alt\adminlte.core.min.css.map" />
+    <Content Include="Content\Asset\dist\css\alt\adminlte.extra-components.css.map" />
+    <Content Include="Content\Asset\dist\css\alt\adminlte.extra-components.min.css.map" />
+    <Content Include="Content\Asset\dist\css\alt\adminlte.light.css.map" />
+    <Content Include="Content\Asset\dist\css\alt\adminlte.light.min.css.map" />
+    <Content Include="Content\Asset\dist\css\alt\adminlte.pages.css.map" />
+    <Content Include="Content\Asset\dist\css\alt\adminlte.pages.min.css.map" />
+    <Content Include="Content\Asset\dist\css\alt\adminlte.plugins.css.map" />
+    <Content Include="Content\Asset\dist\css\alt\adminlte.plugins.min.css.map" />
+    <Content Include="Content\Asset\dist\js\.eslintrc.json" />
+    <Content Include="Content\Asset\dist\js\adminlte.js.map" />
+    <Content Include="Content\Asset\dist\js\adminlte.min.js.map" />
+    <Content Include="Areas\Admin\Views\Account\Login.cshtml" />
+    <Content Include="Areas\Admin\Views\Statistical\Index.cshtml" />
+    <Content Include="Content\Asset\plugins\moment\locales.min.js.map" />
+    <Content Include="Content\Asset\plugins\moment\moment-with-locales.min.js.map" />
+    <Content Include="Content\Asset\plugins\moment\moment.min.js.map" />
+    <Content Include="App_Browsers\qt.browser" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
     <Content Include="Scripts\jquery-3.4.1.slim.js" />
     <Content Include="Scripts\jquery-3.4.1.slim.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery.unobtrusive-ajax.js" />
+    <Content Include="Scripts\jquery.unobtrusive-ajax.min.js" />
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
@@ -3313,6 +3595,21 @@
     <Content Include="Views\Product\Category.cshtml" />
     <Content Include="Views\Product\_ProductList.cshtml" />
     <Content Include="Views\Product\Detail.cshtml" />
+    <Content Include="Views\ShoppingCart\Index.cshtml" />
+    <Content Include="Views\ShoppingCart\Partial_Item_Cart.cshtml" />
+    <Content Include="Views\ShoppingCart\CheckOut.cshtml" />
+    <Content Include="Views\ShoppingCart\Partial_Item_Order.cshtml" />
+    <Content Include="Views\ShoppingCart\Partial_CheckOut.cshtml" />
+    <Content Include="Views\ShoppingCart\CheckOutSuccess.cshtml" />
+    <Content Include="Views\News\Partial_News_Home.cshtml" />
+    <Content Include="Views\News\Index.cshtml" />
+    <Content Include="Views\News\Detail.cshtml" />
+    <Content Include="Views\Contact\Index.cshtml" />
+    <Content Include="Views\ShoppingCart\VnpayReturn.cshtml" />
+    <Content Include="Views\Account\Profile.cshtml" />
+    <Content Include="Views\Account\LichSuDonHang.cshtml" />
+    <Content Include="Views\ShoppingCart\Detail.cshtml" />
+    <Content Include="Views\ShoppingCart\Invoice.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -3361,6 +3658,30 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202410231009178_Update12062.resx">
       <DependentUpon>202410231009178_Update12062.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202411061231523_UpdatePayment.resx">
+      <DependentUpon>202411061231523_UpdatePayment.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202411070202221_addEmail.resx">
+      <DependentUpon>202411070202221_addEmail.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202506110553101_AddFrKey.resx">
+      <DependentUpon>202506110553101_AddFrKey.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202506110557203_AddUserIdToOrder.resx">
+      <DependentUpon>202506110557203_AddUserIdToOrder.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202506110731435_UpdateSchema.resx">
+      <DependentUpon>202506110731435_UpdateSchema.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202506120837364_addcost.resx">
+      <DependentUpon>202506120837364_addcost.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202506190913475_addstatus.resx">
+      <DependentUpon>202506190913475_addstatus.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202506201454321_add-customerid.resx">
+      <DependentUpon>202506201454321_add-customerid.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

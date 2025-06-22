@@ -1,0 +1,35 @@
+﻿
+@{
+    ViewBag.Title = "CheckOutSuccess";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<link rel="stylesheet" type="text/css" href="/Content/Asset/styles/categories_styles.css">
+<link rel="stylesheet" type="text/css" href="/Content/Asset/styles/categories_responsive.css">
+<div class="container product_section_container">
+    <div class="row">
+        <div class="col product_section clearfix">
+
+            <!-- Breadcrumbs -->
+
+            <div class="breadcrumbs d-flex flex-row align-items-center">
+                <ul>
+                    <li><a href="trang-chu">Home</a></li>
+                    <li class="active"><a href="/"><i class="fa fa-angle-right" aria-hidden="true"></i>Giỏ Hàng</a></li>
+                </ul>
+            </div>
+
+            <!-- Sidebar -->
+            <!-- Main Content -->
+            <div class="row">
+                <div class="col-md-12" id="load_data">
+                   <h2>Bạn Đã Mua Hàng Thành Công</h2>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section scripts{
+    <script src="/Content/Asset/js/categories_custom.js"></script>
+}

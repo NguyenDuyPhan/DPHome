@@ -18,5 +18,8 @@ namespace WebBanHang.Models.EF
         public string Image { get; set; }
         public string Link { get; set; }
         public int Type { get; set; }
+        public int? ProductId { get; set; }  // nullable nếu không bắt buộc
+        [ForeignKey("ProductId")]
+        public virtual Product Product { get; set; }
     }
 }

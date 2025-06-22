@@ -90,21 +90,28 @@
                                             @Html.TextAreaFor(x => x.Detail, new { @class = "form-control", @id = "txtDetail" })
                                         </div>
                                         <div class="row">
-                                            <div class="col-md-4">
+                                            <div class="col-md-3">
                                                 <div class="form-group">
                                                     <label for="exampleInputEmail1">Số Lượng </label>
                                                     @Html.TextBoxFor(x => x.Quantity, new { @class = "form-control", @placeholder = "Số Lượng" })
                                                     @Html.ValidationMessageFor(x => x.Quantity, null, new { @class = "text-danger" })
                                                 </div>
                                             </div>
-                                            <div class="col-md-4">
+                                            <div class="col-md-3">
+                                                <div class="form-group">
+                                                    <label for="exampleInputEmail1">Cost</label>
+                                                    @Html.TextBoxFor(x => x.Cost, new { @class = "form-control", @placeholder = "Cost" })
+                                                    @Html.ValidationMessageFor(x => x.Cost, null, new { @class = "text-danger" })
+                                                </div>
+                                            </div>
+                                            <div class="col-md-3">
                                                 <div class="form-group">
                                                     <label for="exampleInputEmail1">Đơn Giá </label>
                                                     @Html.TextBoxFor(x => x.Price, new { @class = "form-control", @placeholder = "Đơn Giá" })
                                                     @Html.ValidationMessageFor(x => x.Price, null, new { @class = "text-danger" })
                                                 </div>
                                             </div>
-                                            <div class="col-md-4">
+                                            <div class="col-md-3">
                                                 <div class="form-group">
                                                     <label for="exampleInputEmail1">Giá Khuyến Mãi </label>
                                                     @Html.TextBoxFor(x => x.PriceSale, new { @class = "form-control", @placeholder = "Khuyến Mãi" })
@@ -187,7 +194,7 @@
                                                                     }
                                                     </tbody>
                                                 </table>
-                                                <input type="hidden" id="tCurrentId" value="0" />
+                                                <input type="hidden" id="tCurrentId" value="1" />
                                             </div>
                                         </div>
                                     </div>

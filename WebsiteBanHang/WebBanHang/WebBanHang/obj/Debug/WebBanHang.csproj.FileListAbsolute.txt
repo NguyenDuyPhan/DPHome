@@ -105,7 +105,6 @@ C:\Project\WebsiteBanHang\WebBanHang\WebBanHang\obj\Debug\WebBanHang.csproj.Core
 C:\Project\WebsiteBanHang\WebBanHang\WebBanHang\obj\Debug\WebBanHang.csproj.CopyComplete
 C:\Project\WebsiteBanHang\WebBanHang\WebBanHang\obj\Debug\WebBanHang.dll
 C:\Project\WebsiteBanHang\WebBanHang\WebBanHang\obj\Debug\WebBanHang.pdb
-C:\Project\WebsiteBanHang\WebBanHang\WebBanHang\obj\Debug\WebBanHang.csproj.AssemblyReference.cache
 C:\Project\WebsiteBanHang\WebBanHang\WebBanHang\obj\Debug\WebBanHang.Migrations.CreatedDatabase.resources
 C:\Project\WebsiteBanHang\WebBanHang\WebBanHang\obj\Debug\WebBanHang.csproj.GenerateResource.cache
 C:\Project\WebsiteBanHang\WebBanHang\WebBanHang\obj\Debug\WebBanHang.Migrations.updatedata.resources
@@ -122,3 +121,13 @@ C:\Project\WebsiteBanHang\WebBanHang\WebBanHang\obj\Debug\WebBanHang.Migrations.
 C:\Project\WebsiteBanHang\WebBanHang\WebBanHang\obj\Debug\WebBanHang.Migrations.Update1206.resources
 C:\Project\WebsiteBanHang\WebBanHang\WebBanHang\obj\Debug\WebBanHang.Migrations.Update12061.resources
 C:\Project\WebsiteBanHang\WebBanHang\WebBanHang\obj\Debug\WebBanHang.Migrations.Update12062.resources
+C:\Project\WebsiteBanHang\WebBanHang\WebBanHang\obj\Debug\WebBanHang.csproj.AssemblyReference.cache
+C:\Project\WebsiteBanHang\WebBanHang\WebBanHang\obj\Debug\WebBanHang.Migrations.UpdatePayment.resources
+C:\Project\WebsiteBanHang\WebBanHang\WebBanHang\obj\Debug\WebBanHang.Migrations.addEmail.resources
+C:\Project\WebsiteBanHang\WebBanHang\WebBanHang\obj\Debug\WebBanHang.Migrations.AddFrKey.resources
+C:\Project\WebsiteBanHang\WebBanHang\WebBanHang\obj\Debug\WebBanHang.Migrations.AddUserIdToOrder.resources
+C:\Project\WebsiteBanHang\WebBanHang\WebBanHang\obj\Debug\WebBanHang.Migrations.UpdateSchema.resources
+C:\Project\WebsiteBanHang\WebBanHang\WebBanHang\obj\Debug\WebBanHang.Migrations.addcost.resources
+C:\Project\WebsiteBanHang\WebBanHang\WebBanHang\obj\Debug\WebBanHang.Migrations.addstatus.resources
+C:\Project\WebsiteBanHang\WebBanHang\WebBanHang\obj\Debug\WebBanHang.Migrations.addcustomerid.resources
+C:\Project\WebsiteBanHang\WebBanHang\WebBanHang\bin\Rotativa.dll
